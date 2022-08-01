@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RegistrarQueso extends JDialog {
-
+//
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
 	private JRadioButton rbEsferico;

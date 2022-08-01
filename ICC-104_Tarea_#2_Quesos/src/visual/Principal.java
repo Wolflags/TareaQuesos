@@ -35,7 +35,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Principal extends JFrame {
-
+//
 	private JPanel contentPane;
 	private Dimension dim;
 

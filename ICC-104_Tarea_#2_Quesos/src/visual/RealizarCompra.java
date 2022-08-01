@@ -39,7 +39,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 public class RealizarCompra extends JDialog {
-
+//
 	private DecimalFormat df = new DecimalFormat("#.##");
 	private final JPanel contentPanel = new JPanel();
 	private JTable tableAlmacen;

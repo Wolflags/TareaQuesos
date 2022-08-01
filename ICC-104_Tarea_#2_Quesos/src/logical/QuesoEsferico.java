@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class QuesoEsferico extends Queso implements Serializable{
 	//Atributos
 	protected float radio;
-	
+	//
 	//Constructor
 	public QuesoEsferico(float costoBase, float costoUnitario, String codigo, float radio) {
 		super(costoBase, costoUnitario, codigo);

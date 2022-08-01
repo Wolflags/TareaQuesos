@@ -30,7 +30,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VerQueso extends JDialog {
-
+//
 	private static DecimalFormat df = new DecimalFormat("#.##");
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;

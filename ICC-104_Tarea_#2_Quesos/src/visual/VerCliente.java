@@ -24,7 +24,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class VerCliente extends JDialog {
-
+//
 	private static DecimalFormat df = new DecimalFormat("#.##");
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;

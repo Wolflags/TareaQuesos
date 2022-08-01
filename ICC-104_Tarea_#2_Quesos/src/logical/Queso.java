@@ -8,7 +8,7 @@ public abstract class Queso implements Serializable{
 	protected float costoUnitario; 
 	protected String codigo;
 	protected String estado;
-	
+	//
 	//Constructor
 	public Queso(float costoBase, float costoUnitario, String codigo) {
 		super();

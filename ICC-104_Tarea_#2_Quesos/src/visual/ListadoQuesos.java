@@ -32,7 +32,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
 public class ListadoQuesos extends JDialog {
-
+//
 	private static DecimalFormat df = new DecimalFormat("#.##");
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;

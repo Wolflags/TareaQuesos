@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ModQueso extends JDialog {
-
+//
 	private final JPanel contentPanel = new JPanel();
 	private Queso auxQueso = null;
 	private JSpinner spnPrecioUnitario;

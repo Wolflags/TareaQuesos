@@ -11,7 +11,7 @@ public class Empresa implements Serializable{
 	public static Empresa empresa = null;
 	public static int generadorCodigoQueso = 1;
 	public static int generadorCodigoFactura = 1;
-	
+	//
 	//Constructor
 	private Empresa() {
 		super();

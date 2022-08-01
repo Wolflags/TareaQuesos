@@ -10,7 +10,7 @@ public class Cliente implements Serializable{
 	private String telefono;
 	private String cedula;
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();
-	
+	//
 	//Constructor
 	public Cliente(String nombre, String direccion, String telefono, String cedula) {
 		super();

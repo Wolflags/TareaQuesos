@@ -3,7 +3,6 @@ package logical;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Queso q1 = null;
 		Queso q2 = null;
 		Queso q3 = null;

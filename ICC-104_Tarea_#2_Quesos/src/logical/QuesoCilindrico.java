@@ -6,7 +6,7 @@ public class QuesoCilindrico extends Queso implements Serializable{
 	//Atributos
 	protected float radioE;
 	protected float longitud;
-	
+	//
 	//Constructor
 	public QuesoCilindrico(float costoBase, float costoUnitario, String codigo, float radioE, float longitud) {
 		super(costoBase, costoUnitario, codigo);

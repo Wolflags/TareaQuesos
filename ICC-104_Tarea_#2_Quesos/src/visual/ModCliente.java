@@ -20,7 +20,7 @@ import logical.Cliente;
 import logical.Empresa;
 
 public class ModCliente extends JDialog {
-
+//
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private JTextField txtCedula;

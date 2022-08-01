@@ -11,7 +11,7 @@ public class Factura implements Serializable{
 	private float total;
 	private Date fecha;
 	private Cliente cliente;
-	
+	//
 	//Constructor
 	public Factura(ArrayList<Queso> quesos, String codigo, Cliente cliente) {
 		super();
