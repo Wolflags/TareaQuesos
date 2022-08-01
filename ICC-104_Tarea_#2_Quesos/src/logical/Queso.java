@@ -1,6 +1,8 @@
 package logical;
 
-public abstract class Queso {
+import java.io.Serializable;
+
+public abstract class Queso implements Serializable{
 	//Atributos
 	protected float costoBase;
 	protected float costoUnitario; 

@@ -1,8 +1,9 @@
 package logical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa {
+public class Empresa implements Serializable{
 	//Atributos
 	private ArrayList<Queso> quesos = new ArrayList<Queso>();
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();

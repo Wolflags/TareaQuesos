@@ -1,6 +1,8 @@
 package logical;
 
-public class QuesoEsferico extends Queso {
+import java.io.Serializable;
+
+public class QuesoEsferico extends Queso implements Serializable{
 	//Atributos
 	protected float radio;
 	

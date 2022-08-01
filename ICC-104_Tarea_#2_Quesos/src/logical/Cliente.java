@@ -1,8 +1,9 @@
 package logical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Serializable{
 	//Atributos
 	private String nombre;
 	private String direccion;
