@@ -65,7 +65,7 @@ public class RegistrarQueso extends JDialog {
 		txtCodigo = new JTextField();
 		txtCodigo.setEditable(false);
 		txtCodigo.setBounds(114, 36, 170, 20);
-		txtCodigo.setText("Q-" + Empresa.generadorCodigoQueso);
+		txtCodigo.setText("Q-" + Empresa.getInstance().getGeneradorCodigoQueso());
 		panelGeneral.add(txtCodigo);
 		txtCodigo.setColumns(10);
 		
@@ -287,7 +287,7 @@ public class RegistrarQueso extends JDialog {
 					}
 
 					private void clean() {
-						txtCodigo.setText("Q-" + Empresa.generadorCodigoQueso);
+						txtCodigo.setText("Q-" + Empresa.getInstance().getGeneradorCodigoQueso());
 						spnPrecioBase.setValue((float)0.0);
 						spnPrecioUnitario.setValue((float)0.0);
 						spnRadioEsferico.setValue((float)0.0);

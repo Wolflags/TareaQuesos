@@ -1,5 +1,11 @@
 package logical;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -9,8 +15,8 @@ public class Empresa implements Serializable{
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	public static Empresa empresa = null;
-	public static int generadorCodigoQueso = 1;
-	public static int generadorCodigoFactura = 1;
+	private int generadorCodigoQueso;
+	private int generadorCodigoFactura;
 	//
 	//Constructor
 	private Empresa() {
@@ -18,8 +24,27 @@ public class Empresa implements Serializable{
 		this.quesos = quesos;
 		this.facturas = facturas;
 		this.clientes = clientes;
+		this.generadorCodigoQueso = 1;
+		this.generadorCodigoFactura = 1;
+		
 	}
 	
+	public int getGeneradorCodigoQueso() {
+		return generadorCodigoQueso;
+	}
+
+	public void setGeneradorCodigoQueso(int generadorCodigoQueso) {
+		this.generadorCodigoQueso = generadorCodigoQueso;
+	}
+
+	public int getGeneradorCodigoFactura() {
+		return generadorCodigoFactura;
+	}
+
+	public void setGeneradorCodigoFactura(int generadorCodigoFactura) {
+		this.generadorCodigoFactura = generadorCodigoFactura;
+	}
+
 	//GetInstance
 	public static Empresa getInstance() {
 		if(empresa == null) {
@@ -124,6 +149,56 @@ public class Empresa implements Serializable{
 	
 	public static void setControl(Empresa temp) {
 		Empresa.empresa = temp;
+		
+	}
+	
+	public static float formatearDecimales(Float numero, Integer numeroDecimales) {
+	    return (float) (Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales));
+	}
+
+	public void CrearArchivo(Factura factura) {
+		File archivo;
+		
+		FileWriter escritor;
+		BufferedWriter bf;
+		PrintWriter prescritor;
+		
+		try {
+			archivo =  new File(factura.getCodigo()+".txt");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			escritor = new FileWriter(archivo);
+			bf = new BufferedWriter(new OutputStreamWriter(fos));
+			
+			bf.write("=================================");
+			bf.newLine();
+			bf.append("Bienvenidos!");
+			bf.newLine();
+			bf.append("Fecha: "+factura.getFecha().getDay()+"/"+factura.getFecha().getMonth()+"/"+(factura.getFecha().getYear()+1900));
+			bf.newLine();
+			bf.append("Cliente: "+factura.getCliente().getNombre());
+			bf.newLine();
+			bf.append("Telefono: "+factura.getCliente().getTelefono());
+			bf.newLine();
+			bf.append("=================================");
+			bf.newLine();
+			bf.append("Quesos:");
+			bf.newLine();
+			for(int i=0;i<factura.getQuesos().size();i++) {
+				
+				bf.append(factura.getQuesos().get(i).getCodigo()+" "+factura.getQuesos().get(i).Volumen()+" "+formatearDecimales(factura.getQuesos().get(i).precioTotal(), 2));
+				
+				bf.newLine();
+			}
+			bf.append("Total: "+formatearDecimales(factura.getTotal(), 2));
+			bf.newLine();
+			bf.append("=================================");
+			bf.newLine();
+			bf.append("Gracias por preferirnos!");
+			bf.newLine();
+			bf.close();
+		}catch(Exception e) {
+			
+		}
 		
 	}
 	

@@ -399,9 +399,10 @@ public class RealizarCompra extends JDialog {
 							ArrayList<Queso> articulosFactura = new ArrayList<Queso>();
 							articulosFactura = (ArrayList<Queso>)carrito.clone();
 							eliminarQuesosDeAlmacen();
-							factura = new Factura(articulosFactura,"F-" + Empresa.generadorCodigoFactura, auxCliente);
+							factura = new Factura(articulosFactura,"F-" + Empresa.getInstance().getGeneradorCodigoFactura(), auxCliente);
 							Empresa.getInstance().insertarFactura(factura);
 							auxCliente.insertarFactura(factura);
+							Empresa.getInstance().CrearArchivo(factura);
 							clean();
 							JOptionPane.showMessageDialog(null, "Compra realizada satisfactoriamente", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}
