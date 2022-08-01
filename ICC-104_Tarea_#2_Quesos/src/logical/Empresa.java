@@ -122,4 +122,9 @@ public class Empresa implements Serializable{
 		return total;
 	}
 	
+	public static void setControl(Empresa temp) {
+		Empresa.empresa = temp;
+		
+	}
+	
 }
