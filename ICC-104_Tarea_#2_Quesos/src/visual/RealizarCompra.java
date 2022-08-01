@@ -399,7 +399,7 @@ public class RealizarCompra extends JDialog {
 							ArrayList<Queso> articulosFactura = new ArrayList<Queso>();
 							articulosFactura = (ArrayList<Queso>)carrito.clone();
 							eliminarQuesosDeAlmacen();
-							factura = new Factura(articulosFactura,"F-" + Empresa.generadorCodigoFactura);
+							factura = new Factura(articulosFactura,"F-" + Empresa.generadorCodigoFactura, auxCliente);
 							Empresa.getInstance().insertarFactura(factura);
 							auxCliente.insertarFactura(factura);
 							clean();

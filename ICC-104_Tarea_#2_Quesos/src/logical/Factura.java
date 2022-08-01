@@ -2,15 +2,18 @@ package logical;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Factura implements Serializable{
 	//Atributos
 	private ArrayList<Queso> quesos = new ArrayList<Queso>();
 	private String codigo;
 	private float total;
+	private Date fecha;
+	private Cliente cliente;
 	
 	//Constructor
-	public Factura(ArrayList<Queso> quesos, String codigo) {
+	public Factura(ArrayList<Queso> quesos, String codigo, Cliente cliente) {
 		super();
 		this.quesos = quesos;
 		this.codigo = codigo;
@@ -19,6 +22,8 @@ public class Factura implements Serializable{
 			total += queso.precioTotal();
 		}
 		this.total = total;
+		this.fecha = new Date();
+		this.cliente = cliente;
 	}
 
 	//Getters y Setters
@@ -41,4 +46,13 @@ public class Factura implements Serializable{
 		}
 		return cant;
 	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
 }
