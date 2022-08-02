@@ -37,7 +37,6 @@ public class Flujo extends Thread {
 				String linea = FlujoLectura.readUTF();
 				if (!linea.equals(""))
 				{
-					linea = nsfd.getInetAddress() +"> "+ linea;
 					broadcast(linea);
 				}
 			}

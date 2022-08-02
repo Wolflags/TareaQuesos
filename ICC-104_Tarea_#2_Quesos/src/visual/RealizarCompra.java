@@ -403,6 +403,7 @@ public class RealizarCompra extends JDialog {
 							Empresa.getInstance().insertarFactura(factura);
 							auxCliente.insertarFactura(factura);
 							Empresa.getInstance().CrearArchivo(factura);
+							Principal.backup(factura.getCodigo());
 							clean();
 							JOptionPane.showMessageDialog(null, "Compra realizada satisfactoriamente", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}

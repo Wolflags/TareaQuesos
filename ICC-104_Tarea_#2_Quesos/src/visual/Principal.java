@@ -11,12 +11,23 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JMenuBar;
@@ -38,6 +49,10 @@ public class Principal extends JFrame {
 //
 	private JPanel contentPane;
 	private Dimension dim;
+	static Socket sfd = null;
+	static DataInputStream EntradaSocket;
+	static DataOutputStream SalidaSocket;
+	String texto;
 
 	/**
 	 * Launch the application.
@@ -74,6 +89,25 @@ public class Principal extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				///////////////////////////////////////////////////
+				
+				try
+			    {
+			      sfd = new Socket("127.0.0.1",7000);
+			      EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
+			      SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+			    }
+			    catch (UnknownHostException uhe)
+			    {
+			      System.out.println("No se puede acceder al servidor.");
+			      System.exit(1);
+			    }
+			    catch (IOException ioe)
+			    {
+			      System.out.println("Comunicación rechazada.");
+			      System.exit(1);
+			    }
+				
 				
 				try {
 					Principal frame = new Principal();
@@ -221,5 +255,49 @@ public class Principal extends JFrame {
 		lblFacturacion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblFacturacion.setBounds(55, 9, 165, 19);
 		panelFacturacion.add(lblFacturacion);
+	}
+
+	public static void backup(String archivo) {
+		try {
+			File fileIn = new File(archivo+".txt");
+			FileInputStream fis;
+			fis = new FileInputStream(fileIn);
+			BufferedReader br = new BufferedReader(new InputStreamReader (fis));
+			
+			File fileOut = new File(archivo+"_respaldo.txt");
+			FileOutputStream fos;
+			fos = new FileOutputStream(fileOut);
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter (fos));
+			
+			try {
+				String texto;
+				while ((texto = br.readLine()) != null) {
+					String linea;
+					try
+					{
+						SalidaSocket.writeUTF(texto);
+						SalidaSocket.flush();
+						linea = EntradaSocket.readUTF();
+						bw.append(linea);
+						System.out.println(linea);
+						bw.newLine();
+					}
+					catch (IOException ioe)
+					{
+						System.out.println("Error: "+ioe);
+					}
+				}
+				bw.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    
+		
 	}
 }
