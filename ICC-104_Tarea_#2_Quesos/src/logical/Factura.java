@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Atributos
 	private ArrayList<Queso> quesos = new ArrayList<Queso>();
 	private String codigo;

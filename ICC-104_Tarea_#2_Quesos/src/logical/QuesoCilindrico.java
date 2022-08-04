@@ -3,6 +3,10 @@ package logical;
 import java.io.Serializable;
 
 public class QuesoCilindrico extends Queso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Atributos
 	protected float radioE;
 	protected float longitud;

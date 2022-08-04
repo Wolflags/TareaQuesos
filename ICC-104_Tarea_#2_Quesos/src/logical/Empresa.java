@@ -17,6 +17,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Empresa implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Atributos
 	private ArrayList<Queso> quesos = new ArrayList<Queso>();
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();
