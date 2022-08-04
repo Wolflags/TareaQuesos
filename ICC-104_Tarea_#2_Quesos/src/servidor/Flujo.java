@@ -2,9 +2,17 @@ package servidor;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Enumeration;
 
@@ -28,8 +36,6 @@ public class Flujo extends Thread {
 	}
 	public void run()
 	{
-		broadcast(nsfd.getInetAddress()+"> se ha conectado");
-		Servidor.usuarios.add ((Object) this);
 		while(true)
 		{
 			try
@@ -37,39 +43,50 @@ public class Flujo extends Thread {
 				String linea = FlujoLectura.readUTF();
 				if (!linea.equals(""))
 				{
-					broadcast(linea);
+					try {
+						File fileIn = new File(linea+".txt");
+						FileInputStream fis;
+						fis = new FileInputStream(fileIn);
+						BufferedReader br = new BufferedReader(new InputStreamReader (fis));
+						
+						File fileOut = new File(linea+"_respaldo.txt");
+						FileOutputStream fos;
+						fos = new FileOutputStream(fileOut);
+						BufferedWriter bw = new BufferedWriter(new OutputStreamWriter (fos));
+						
+						try {
+							String texto;
+							while ((texto = br.readLine()) != null) {
+								
+								try
+								{
+									
+									bw.append(texto);
+									System.out.println(texto);
+									bw.newLine();
+								}
+								catch (IOException ioe)
+								{
+									System.out.println("Error: "+ioe);
+								}
+							}
+							bw.close();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			catch(IOException ioe)
 			{
-				Servidor.usuarios.removeElement(this);
-				broadcast(nsfd.getInetAddress()+"> se ha desconectado");
-				break;
+				
 			}
 		}
 	}
 	
-	public void broadcast(String mensaje)
-	{
-		synchronized (Servidor.usuarios)
-		{
-			Enumeration e = Servidor.usuarios.elements();
-			while (e.hasMoreElements())
-			{
-				Flujo f = (Flujo) e.nextElement();
-				try
-				{
-					synchronized(f.FlujoEscritura)
-					{
-						f.FlujoEscritura.writeUTF(mensaje);
-						f.FlujoEscritura.flush();
-					}
-				}
-				catch(IOException ioe)
-				{
-					System.out.println("Error: "+ioe);
-				}
-			}
-		}
-	}
+
 }

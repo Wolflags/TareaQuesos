@@ -259,43 +259,15 @@ public class Principal extends JFrame {
 
 	public static void backup(String archivo) {
 		try {
-			File fileIn = new File(archivo+".txt");
-			FileInputStream fis;
-			fis = new FileInputStream(fileIn);
-			BufferedReader br = new BufferedReader(new InputStreamReader (fis));
 			
-			File fileOut = new File(archivo+"_respaldo.txt");
-			FileOutputStream fos;
-			fos = new FileOutputStream(fileOut);
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter (fos));
-			
-			try {
-				String texto;
-				while ((texto = br.readLine()) != null) {
-					String linea;
-					try
-					{
-						SalidaSocket.writeUTF(texto);
-						SalidaSocket.flush();
-						linea = EntradaSocket.readUTF();
-						bw.append(linea);
-						System.out.println(linea);
-						bw.newLine();
-					}
-					catch (IOException ioe)
-					{
-						System.out.println("Error: "+ioe);
-					}
-				}
-				bw.close();
+				SalidaSocket.writeUTF(archivo);
+				SalidaSocket.flush();
+						
+					
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	    
 	    
 		
