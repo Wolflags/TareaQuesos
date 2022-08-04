@@ -19,7 +19,7 @@ public class Flujo extends Thread {
 	
 	public Flujo (Socket sfd) {
 		nsfd = sfd;
-		try{
+		try{//
 			FlujoLectura = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
 			FlujoEscritura = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
 		}catch(IOException ioe){
