@@ -62,7 +62,6 @@ public class Flujo extends Thread {
 								{
 									
 									bw.append(texto);
-									System.out.println(texto);
 									bw.newLine();
 								}
 								catch (IOException ioe)

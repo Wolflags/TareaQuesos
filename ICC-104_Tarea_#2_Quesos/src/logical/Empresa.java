@@ -196,7 +196,7 @@ public class Empresa implements Serializable{
 			bf.newLine();
 			for(int i=0;i<factura.getQuesos().size();i++) {
 				
-				bf.append(factura.getQuesos().get(i).getCodigo()+" "+factura.getQuesos().get(i).Volumen()+" "+formatearDecimales(factura.getQuesos().get(i).precioTotal(), 2));
+				bf.append(factura.getQuesos().get(i).getCodigo()+" "+formatearDecimales(factura.getQuesos().get(i).Volumen(), 2)+" "+formatearDecimales(factura.getQuesos().get(i).precioTotal(), 2));
 				
 				bf.newLine();
 			}
